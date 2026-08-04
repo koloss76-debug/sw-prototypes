@@ -1145,13 +1145,14 @@
             <Sheet title={CONTENT.leave.title} body={CONTENT.leave.body} onClose={() => setModal(null)}
               buttons={
                 <>
+                  {/* Главное действие — остаться и завершить регистрацию */}
                   <div className="swBtnRow">
-                    <button type="button" className="swBtn" onClick={() => { setModal(null); setScreen('reg'); }}>
-                      {CONTENT.leave.confirm}
-                    </button>
+                    <button type="button" className="swBtn" onClick={() => setModal(null)}>{CONTENT.leave.cancel}</button>
                   </div>
                   <div className="swBtnRow">
-                    <button type="button" className="swBtn swBtn--ghost" onClick={() => setModal(null)}>{CONTENT.leave.cancel}</button>
+                    <button type="button" className="swBtn swBtn--ghost" onClick={() => { setModal(null); setScreen('reg'); }}>
+                      {CONTENT.leave.confirm}
+                    </button>
                   </div>
                 </>
               } />
