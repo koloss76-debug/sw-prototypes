@@ -8,29 +8,22 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
 <style>
-  /* Токены, которые в рабочей версии приходят из tokens.css кита */
   :root {
-    --brand-secondary-800: #00a4f0;
-    --brand-secondary-900: #008cf7;
+    --brand-secondary-800: #00a4f0; --brand-secondary-900: #008cf7;
     --brand-secondary-tint-16: rgba(79, 202, 255, 0.16);
-    --label-primary: #141414;
-    --grey-500: #8b8d94;
-    --grey-300: #bfc1c5;
-    --grey-250: #e1e2e4;
-    --grey-200: #ebecee;
-    --grey-100: #f6f6f8;
-    --white: #ffffff;
-    --blue-800: #222e92;
-    --red-700: #bb2017;
-    --semantic-error: #ff453a;
-    --dimmer-secondary: rgba(0, 0, 0, 0.48);
+    --label-primary: #141414; --grey-500: #8b8d94; --grey-300: #bfc1c5;
+    --grey-250: #e1e2e4; --grey-200: #ebecee; --grey-100: #f6f6f8;
+    --white: #ffffff; --blue-800: #222e92; --red-700: #bb2017;
+    --semantic-error: #ff453a; --dimmer-secondary: rgba(0, 0, 0, 0.48);
     --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --tg-safe-area-top: env(safe-area-inset-top, 0px);
   }
   html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-  #root { height: 100%; }
-  #root > .sw { height: 100%; }
+  #root, #root > .sw { height: 100%; }
 </style>
+</head>
+<body>
+<div id="root"></div>
   <style>
     /* Gerbera — фирменный шрифт SW, subset'ы зашиты в data-URI:
        CSP превью-хоста режет внешние font-src. Regular / Medium / Bold. */
@@ -255,13 +248,11 @@
     }
     .swTab.is-active { color: var(--sw-ink); border-bottom-color: var(--sw-brand); font-weight: 700; }
 
-    /* Меню зафиксировано внизу; нижний отступ уводит иконки из-под home-indicator */
+    /* Меню зафиксировано внизу, высота 48px как в макете */
     .swTabBar {
       display: flex; align-items: center; height: 48px;
       background: var(--sw-card); border-top: 1px solid var(--sw-line-2);
       flex: 0 0 auto;
-      box-sizing: content-box;
-      padding-bottom: max(24px, env(safe-area-inset-bottom, 0px));
     }
     .swTabBar button {
       flex: 1; display: flex; align-items: center; justify-content: center;
@@ -321,9 +312,6 @@
     }
   </style>
 
-</head>
-<body>
-<div id="root"></div>
   <script type="text/babel">
     /* global React, ReactDOM */
     const { useState, useEffect, useRef } = React;
@@ -436,10 +424,10 @@
 
     const CONSULTANTS = [
       { id: '223322', name: 'Чегина Анастасия, 29 лет', role: 'Sapphire Business Leader, Москва', initials: 'ЧА',
-        photo: 'https://randomuser.me/api/portraits/women/44.jpg',
+        photo: 'data:image/jpeg;base64,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',
         bio: 'Я врач-косметолог, специалист в области эстетической медицины и ...' },
       { id: '223323', name: 'Чеглакова Елена, 28 лет', role: 'Sapphire Business Leader, Москва', initials: 'ЧЕ',
-        photo: 'https://randomuser.me/api/portraits/women/68.jpg',
+        photo: 'data:image/jpeg;base64,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',
         bio: 'Я врач-косметолог, специалист в области эстетической медицины и ...' },
       { id: '223324', name: 'Степанова Ксения, 45 лет', role: 'Leader, Москва', initials: 'СК',
         bio: 'Я врач-косметолог, специалист в области эстетической медицины и ...' },
@@ -745,8 +733,8 @@
       const isReferral = mode === 'referral';
       const d = digits(phone);
       const phoneTaken = d.length === 10 && TAKEN_PHONES.indexOf(d) >= 0;
-      const needName = isReferral || !!consultant;
-      const canSubmit = d.length === 10 && !phoneTaken && (!needName || name.trim().length > 0) && state.agree1 && state.agree2;
+      // Кнопка зависит только от телефона и согласий — консультант и имя опциональны
+      const canSubmit = d.length === 10 && !phoneTaken && state.agree1 && state.agree2;
 
       return (
         <>
