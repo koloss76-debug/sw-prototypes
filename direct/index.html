@@ -315,6 +315,51 @@
     }
     .swBackChevron { font-size: 20px; line-height: 1; }
 
+    /* Шапка быстрой реги: логотип + телефон */
+    .swCartHead { background: var(--sw-card); padding-top: var(--sw-safe); }
+    .swBrandRow {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; padding: 4px 16px 14px;
+    }
+    .swBrand {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700; line-height: 1.15;
+      letter-spacing: 0.06em; color: var(--sw-ink);
+    }
+
+    /* Футер сайта */
+    .swFooter { margin-top: 8px; }
+    .swFootSub { background: var(--sw-tint); padding: 24px 16px; }
+    .swFootForm { display: flex; gap: 0; margin-top: 16px; }
+    .swFootForm input {
+      flex: 1; min-width: 0; height: 44px; border: none; outline: none;
+      background: var(--sw-card); border-radius: 6px 0 0 6px;
+      padding: 0 14px; font-size: 15px; color: var(--sw-ink);
+    }
+    .swFootForm .swBtn { border-radius: 0 6px 6px 0; height: 44px; }
+    .swFootLinks { background: var(--sw-card); margin-top: 8px; }
+    .swFootRow {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px; font-size: 16px; font-weight: 700;
+      border-bottom: 1px solid var(--sw-line-3); cursor: pointer;
+    }
+    .swFootBlock { background: var(--sw-card); padding: 20px 16px; border-top: 1px solid var(--sw-line-3); }
+    .swFootPhone { font-size: 18px; font-weight: 700; }
+    .swChips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .swChip {
+      border: 1px solid var(--sw-line-2); border-radius: 6px;
+      padding: 8px 12px; font-size: 12px; font-weight: 700;
+      color: var(--sw-ink-2); background: var(--sw-card);
+    }
+    .swChip--dark { background: var(--label-primary); color: var(--white); border-color: var(--label-primary); }
+    .swChip--round { border-radius: 50%; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0; font-size: 11px; }
+    .swFootWarn { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 700; margin: 0 0 10px; }
+    .swWarnIcon {
+      width: 22px; height: 22px; flex: 0 0 22px; border-radius: 50%;
+      border: 1.5px solid var(--sw-error); color: var(--sw-error);
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+    }
+
     /* Оформление заказа */
     .swCoTop {
       display: flex; align-items: center; justify-content: space-between;
@@ -373,11 +418,35 @@
         contract: 'Ваш номер контракта:',
         fillProfile: 'Заполнить профиль',
       },
+      footer: {
+        subTitle: 'Узнавай о новинках\nи проектах компании',
+        mail: 'Твой E-mail',
+        subscribe: 'Подписаться',
+        socialTitle: 'Мы в социальных сетях:',
+        socials: ['ВК', 'YT', 'ОК', 'TG'],
+        sections: ['О нас', 'Зарабатывай', 'Кэшбек', 'Помощь', 'Проекты компании'],
+        phone: '8 (800) 755 87 55',
+        hours: 'Ежедневно с 5:00 до 20:00\nпо московскому времени',
+        region: 'Петропавлов…',
+        currency: '₽',
+        pays: ['VISA', 'mastercard', 'PayPal', 'ЮMoney', 'QIWI', 'СБП'],
+        apps: ['Google Play', 'App Store'],
+        certs: ['GMP', 'ISO 22000', 'HACCP', 'FDA'],
+        warnTitle: 'Внимание! Остерегайтесь подделок!',
+        warn1: 'Мы гарантируем надлежащее качество реализуемого товара в официальном Интернет-магазине, а также через ',
+        warnLink: 'магазины',
+        warn2: ' Siberian Wellness',
+        warn3: 'Мы не гарантируем качество продукции, а также соблюдение условий ее хранения продавцами, если вы приобретаете товар на сторонних сайтах или маркетплейсах',
+        legal1: '1996–2021 ООО «Международная компания «Сибирское здоровье». Все права защищены.',
+        legal2: 'Воспроизведение материалов данного сайта возможно при условии обязательного размещения активной ссылки на www.siberianwellness.com.',
+        legal3: 'Вся бизнес-информация, представленная на данном сайте, является недействительной для Республики Узбекистан',
+        links: ['Пользовательское соглашение', 'Политика конфиденциальности', 'Условия покупки'],
+      },
       checkout: {
         back: 'Вернуться к корзине',
         phone: '8 (800) 755 87 55',
         title: 'Оформление заказа',
-        order: '22694960',
+        order: '10509907',
         step1: 'Способ получения товара',
         delivery: 'Доставка:',
         city: 'Москва',
@@ -627,6 +696,75 @@
         </button>
       );
     }
+
+    /* Шапка быстрой реги: возврат в корзину + логотип и телефон (макет 8548:36333) */
+    function CartHeader() {
+      return (
+        <div className="swCartHead">
+          <BackToShop />
+          <div className="swBrandRow">
+            <span className="swBrand"><SnowflakeIcon /> SIBERIAN<br />WELLNESS</span>
+            <span className="swCoPhone">☏ {CONTENT.footer.phone}</span>
+          </div>
+        </div>
+      );
+    }
+
+    /* Футер сайта */
+    function Footer() {
+      const f = CONTENT.footer;
+      return (
+        <footer className="swFooter">
+          <div className="swFootSub">
+            <h2 className="swH2" style={{ whiteSpace: 'pre-line' }}>{f.subTitle}</h2>
+            <div className="swFootForm">
+              <input placeholder={f.mail} />
+              <button type="button" className="swBtn swBtn--pill">{f.subscribe}</button>
+            </div>
+            <p className="swSub" style={{ margin: '16px 0 10px' }}>{f.socialTitle}</p>
+            <div className="swSocials">
+              {f.socials.map((s) => <span className="swSocial" key={s}>{s}</span>)}
+            </div>
+          </div>
+
+          <div className="swFootLinks">
+            {f.sections.map((s) => (
+              <div className="swFootRow" key={s}><span>{s}</span><span className="swCaret">{CONTENT.icons.caret}</span></div>
+            ))}
+          </div>
+
+          <div className="swFootBlock">
+            <div className="swFootPhone">{f.phone}</div>
+            <p className="swHelper" style={{ whiteSpace: 'pre-line', marginTop: 4 }}>{f.hours}</p>
+            <p className="swHelper">{f.region} | {f.currency}</p>
+          </div>
+
+          <div className="swFootBlock">
+            <div className="swChips">{f.pays.map((p) => <span className="swChip" key={p}>{p}</span>)}</div>
+            <div className="swChips" style={{ marginTop: 12 }}>
+              {f.apps.map((a) => <span className="swChip swChip--dark" key={a}>{a}</span>)}
+            </div>
+          </div>
+
+          <div className="swFootBlock">
+            <div className="swChips">{f.certs.map((c) => <span className="swChip swChip--round" key={c}>{c}</span>)}</div>
+          </div>
+
+          <div className="swFootBlock">
+            <p className="swFootWarn"><span className="swWarnIcon">!</span> {f.warnTitle}</p>
+            <p className="swHelper">{f.warn1}<span className="swInlineLink">{f.warnLink}</span>{f.warn2}</p>
+            <p className="swHelper">{f.warn3}</p>
+          </div>
+
+          <div className="swFootBlock">
+            <p className="swHelper">{f.legal1}</p>
+            <p className="swHelper">{f.legal2}</p>
+            <p className="swHelper">{f.legal3}</p>
+            {f.links.map((l) => <p key={l} style={{ margin: '8px 0 0' }}><span className="swInlineLink">{l}</span></p>)}
+          </div>
+        </footer>
+      );
+    }
     function Delivery() {
       return (
         <>
@@ -830,7 +968,7 @@
         <>
           <TopBar />
           <div className="swScroll">
-            <Delivery />
+            {FLOW === 'cart' ? <CartHeader /> : <Delivery />}
             <div className="swCard">
               <h1 className="swH1">{FLOW === 'cart' ? CONTENT.cart.title : CONTENT.reg.title}</h1>
               <p className="swSub">{CONTENT.reg.sub}</p>
@@ -913,8 +1051,9 @@
                 <button type="button" className="swLink" style={{ marginTop: 10 }}>{CONTENT.reg.bpLink} <Chevron /></button>
               </div>
             )}
+            <Footer />
           </div>
-          <TabBar />
+          {FLOW === 'cart' ? null : <TabBar />}
         </>
       );
     }
@@ -1090,23 +1229,26 @@
 
     /* Оформление заказа — куда попадает пользователь после быстрой реги (макет 8548:22605) */
     const PICKUP = [
-      ['Магазин SIBERIAN WELLNESS', 'от 99 ₽'],
-      ['5POST (магазины «Пятёрочка», «Перекрёсток»)', 'от 145 ₽'],
-      ['DPD', 'от 149 ₽'],
-      ['ПВЗ Яндекс Доставки', 'от 170 ₽'],
-      ['Магнит', 'от 183 ₽'],
-      ['ПВЗ Почты России', 'от 209 ₽'],
-      ['СДЭК', 'от 211 ₽'],
+      ['Магазин SIBERIAN WELLNESS', 'бесплатно'],
+      ['Почтоматы "Почта России"', 'от 130 ₽'],
+      ['Пункт выдачи Boxberry', 'от 135 ₽'],
+      ['Пункт выдачи CDEK', 'от 135 ₽'],
+      ['Пункт выдачи DPD', 'от 138 ₽'],
     ];
     const COURIER = [
-      ['DPD доставка до двери', 'от 221 ₽'],
-      ['Экспресс-доставка Siberian Wellness', 'от 800 ₽'],
+      ['CDEK', ''],
+      ['DPD доставка до двери', ''],
+      ['Экспресс-доставка Siberian Wellness', ''],
+      ['Доставка до двери', ''],
+      ['Доставка 1 классом', ''],
+      ['Доставка в отделение Почты России', ''],
+      ['EMS', ''],
     ];
 
     function CheckoutScreen({ onProfile }) {
       const [picked, setPicked] = useState(null); // 'pickup' | 'courier'
-      const price = picked === 'courier' ? 221 : picked === 'pickup' ? 99 : null;
-      const total = 990 + (price || 0);
+      const price = picked === 'courier' ? 130 : picked === 'pickup' ? 0 : null;
+      const total = 2000 + (price || 0);
 
       const Group = ({ id, title, rows }) => (
         <div className="swCoGroup">
@@ -1161,16 +1303,20 @@
             </div>
 
             <div className="swCard">
-              <div className="swCoStep is-off"><span className="swCoNum">2</span><h2 className="swH2" style={{ margin: 0 }}>{CONTENT.checkout.step2}</h2></div>
+              <div className="swCoStep is-off">
+                <span className="swCoNum">2</span>
+                <h2 className="swH2" style={{ margin: 0, flex: 1 }}>{CONTENT.checkout.step2}</h2>
+                <Chevron />
+              </div>
             </div>
 
             <div className="swCard">
-              <div className="swCoSum2"><span>{CONTENT.checkout.qty}</span><b>1</b></div>
-              <div className="swCoSum2 is-muted"><span>{CONTENT.checkout.points}</span><span>21</span></div>
+              <div className="swCoSum2"><span>{CONTENT.checkout.qty}</span><b>4</b></div>
+              <div className="swCoSum2 is-muted"><span>{CONTENT.checkout.points}</span><span>80</span></div>
               <div className="swDivider" />
-              <div className="swCoSum2"><span>{CONTENT.checkout.cart}</span><b>990 ₽</b></div>
+              <div className="swCoSum2"><span>{CONTENT.checkout.cart}</span><b>2 000 ₽</b></div>
               <div className="swCoSum2"><span>{CONTENT.checkout.deliveryRow}</span>
-                <span className={price ? '' : 'swMuted'}>{price ? price + ' ₽' : CONTENT.checkout.none}</span></div>
+                <span className={price ? '' : 'swMuted'}>{picked ? (price ? price + ' ₽' : 'бесплатно') : CONTENT.checkout.none}</span></div>
               <div className="swCoSum2"><span>{CONTENT.checkout.payRow}</span><span className="swMuted">{CONTENT.checkout.none}</span></div>
               <div className="swDivider" />
               <div className="swCoTotal"><span>{CONTENT.checkout.total}</span><b>{total} ₽</b></div>
@@ -1179,7 +1325,6 @@
               </div>
             </div>
           </div>
-          <TabBar />
         </>
       );
     }
