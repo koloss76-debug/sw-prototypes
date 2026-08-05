@@ -1255,7 +1255,7 @@
       ['EMS', ''],
     ];
 
-    function CheckoutScreen({ onProfile }) {
+    function CheckoutScreen() {
       const [picked, setPicked] = useState(null); // 'pickup' | 'courier'
       const price = picked === 'courier' ? 130 : picked === 'pickup' ? 0 : null;
       const total = 2000 + (price || 0);
@@ -1287,15 +1287,6 @@
                 <span className="swBackChevron">‹</span> {CONTENT.checkout.back}
               </button>
               <span className="swCoPhone">{CONTENT.checkout.phone}</span>
-            </div>
-
-            {/* Регистрация подтверждена, но покупку не прерываем */}
-            <div className="swCoBanner">
-              <div>
-                <b>{CONTENT.cart.banner}</b>
-                <div className="swCoContract">{CONTENT.cart.contract} {CONTRACT}</div>
-              </div>
-              <button type="button" className="swLink" onClick={onProfile}>{CONTENT.cart.fillProfile}</button>
             </div>
 
             <div className="swCard">
@@ -1441,7 +1432,7 @@
             <CodeScreen phone={phoneLabel} onDone={() => setScreen(FLOW === 'cart' ? 'checkout' : 'done')}
                         onClose={() => setModal('leave')} onHelp={() => setModal('smsHelp')} />
           )}
-          {screen === 'checkout' && <CheckoutScreen onProfile={() => setScreen('done')} />}
+          {screen === 'checkout' && <CheckoutScreen />}
           {screen === 'done' && (
             <DoneScreen profile={profile} setField={setField} saved={saved}
                         onSave={() => setSaved(true)} onPickDate={() => setModal('calendar')} />
